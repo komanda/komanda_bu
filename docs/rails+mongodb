@@ -1,0 +1,32 @@
+# create new rails app and skip active record
+rails new my_app -O (--skip-active-record)
+
+# add mongoid gem and bundle install
+gem "mongoid", "~> 3.0.0"
+bundle
+
+# generate mongoid config
+rails g mongoid:config
+
+# add bootstrap
+gem 'less-rails-bootstrap'
+
+# in application.css add
+ *= require twitter/bootstrap
+
+# in application.js add
+ //= require twitter/bootstrap
+
+# import if you need mixinscd 
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+
+# generate ssh key
+ssh-keygen -t rsa -C "giordano.scalzo[at]gmail.com" -f  ~/.ssh/id_rsa_heroku
+
+ssh-add
+
+git reset --hard <old-commit-id>
+git push -f
+
