@@ -1,0 +1,9 @@
+<div class="default">
+	<%= image_tag @event.flyer %>
+	<div class="separator"></div>
+	<%= link_to "Buy tickets", "model_path(@model)", class: "btn btn-primary" %>
+</div>
+
+<%= render 'rating' %>
+
+<%= render 'going' %>

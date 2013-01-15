@@ -1,0 +1,12 @@
+<% if @upcoming.size > 0 %>
+	<h1>Upcoming Event</h1>
+	<%= render @upcoming %>
+<% else %>
+	<p class='lead'>We are planning our next event.</p>
+<% end %>
+
+<h1 style="text-align: center">Past Events</h1>
+
+<div class="row">
+	<%= render @past %>
+</div>

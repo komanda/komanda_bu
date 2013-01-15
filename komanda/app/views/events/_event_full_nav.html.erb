@@ -1,0 +1,9 @@
+<div class="default">
+	<ul class="nav nav-pills nav-stacked">
+		<% @events.each do |e| %>
+			<li class="<%= 'active' if @event == e %>">
+				<%= link_to e.name, e %>
+			</li>
+		<% end %>
+	</ul>			
+</div>
