@@ -11,8 +11,10 @@ class Event
   field :date,        type: Date, default: Date.current()
   field :time,        type: Time, default: Time.now
   field :flyer,       type: String
+  field :preview,     type: String
   field :description, type: String
   field :address,     type: String
+  field :map_link,    type: String
   field :price,       type: Float, default: 15.00
   field :views,       type: Integer, default: 0
   field :going,       type: Array, default: []

@@ -1,12 +1,18 @@
 <% if @upcoming.size > 0 %>
-	<h1>Upcoming Event</h1>
-	<%= render @upcoming %>
+	<h3 class="muted center">Upcoming Event</h3>
+	<%= render 'upcoming', event: @upcoming.first %>
 <% else %>
 	<p class='lead'>We are planning our next event.</p>
+	
+	<% if admin_user? %>
+		<div class="alert alert-info center">
+			<%= link_to "New Event", new_event_path, class: "btn btn-primary" %>
+		</div>
+	<% end %>
+
 <% end %>
 
-<h1 style="text-align: center">Past Events</h1>
-
+<h3 class="muted center">Past Events</h3>
 <div class="row">
 	<%= render @past %>
 </div>

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :admin_user, only: [:new, :reate, :update, :destroy]
+  before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :logged_in, only: :join
   
   def index
@@ -13,15 +13,33 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
   end
 
   def create
+    @event = Event.new(params[:event])
+    if @event.save
+      render @event
+    else
+      render "new"
+    end
+  end
+  
+  def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    @event = Event.find(params[:id])
+    @event.update_attributes(params[:event])
+    # @event.assign_attributes(params[:party])
+    # @party.pics = (params[:party][:pics]).split
+    redirect_to @event, notice: "Event updated!"
   end
 
   def destroy
+    @event = Event.find(params[:id]).destroy
+    redirect_to root_path
   end
   
   def join
