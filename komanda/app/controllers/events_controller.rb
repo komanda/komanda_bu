@@ -25,12 +25,11 @@ class EventsController < ApplicationController
   end
   
   def join
-    @event = Event.find(params[:id])
-    @event.users << current_user unless @event.users.include?(current_user)
-    @event.save
+    event = Event.find(params[:id])
+    event.join(current_user)
 
-    render json: { count:       @event.users.count, 
-                   image_url:   @event.users.last.image_url,
-                   profile_url: @event.users.last.profile_url }
+    render json: { count:       event.users.count, 
+                   image_url:   current_user.image_url,
+                   profile_url: current_user.profile_url }
   end
 end

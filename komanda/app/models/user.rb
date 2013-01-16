@@ -16,7 +16,7 @@ class User
   # has_many :comments, dependent: :destroy
   # has_many :suggestions, dependent: :destroy
   # has_many :shares, dependent: :destroy
-  # has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_and_belongs_to_many :events
   attr_accessible :provider, :uid, :name, :img_url, :profile_url
   validates_presence_of :provider, :uid
@@ -38,5 +38,9 @@ class User
       end  
       
     end
+  end
+  
+  def update_email(email)
+    self.email = email
   end
 end

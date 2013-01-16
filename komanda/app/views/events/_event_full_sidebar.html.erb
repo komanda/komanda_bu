@@ -1,7 +1,15 @@
 <div class="default">
 	<%= image_tag @event.flyer %>
-	<div class="separator"></div>
-	<%= link_to "Buy tickets", "model_path(@model)", class: "btn btn-primary" %>
+	
+	<% if @event.upcoming? %>
+		<div class="separator"></div>
+		<% if current_user %>
+			<%= link_to "Buy tickets", "#{new_order_path}?event_id=#{@event.id}", class: "btn btn-primary" %>
+		<% else %>
+			<%= link_to "Buy tickets", signin_path %>
+		<% end %>
+	<% end %>
+	
 </div>
 
 <%= render 'rating' %>

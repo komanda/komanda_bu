@@ -1,18 +1,22 @@
 <div class="default">
-	
-	<% if @event.users.include?(current_user) %>
-		<%= link_to "Going", "#", 
-				class: "btn btn-success disabled", 
-				id: "join",
-				remote: true %>
-	<% else %>
-		<%= link_to "Join", 
-				join_event_path, 
-				class: "btn btn-success", 
-				id: "join" %>
+	<% if @event.upcoming? %>
+		<% if current_user %>
+			<% if @event.users.include?(current_user) %>
+				<%= link_to "Going", "#", 
+						class: "btn btn-success disabled", 
+						id: "join",
+						remote: true %>
+			<% else %>
+				<%= link_to "Join", 
+						join_event_path, 
+						class: "btn btn-success", 
+						id: "join" %>
+			<% end %>
+		<% else %>
+			<%= link_to "Join", signin_path, class: "btn btn-success" %>
+		<% end %>
+		<div class="separator"></div>
 	<% end %>
-	
-	<div class="separator" style="clear: both"></div>
 	
 	<p class="alert alert-error hide" id="error">
 		<i class="icon-exclamation-sign"></i>

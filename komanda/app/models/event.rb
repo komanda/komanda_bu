@@ -24,4 +24,12 @@ class Event
   has_and_belongs_to_many :users
   # has_many :comments, as: :commentable, dependent: :destroy
   validates_presence_of :name, :date, :time, :flyer, :description, :address
+  
+  def upcoming?
+    self.date >= Date.current()
+  end
+  
+  def join(user)
+    self.users << user unless self.users.include?(user)
+  end
 end
