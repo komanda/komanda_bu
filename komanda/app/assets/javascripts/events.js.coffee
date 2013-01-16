@@ -3,7 +3,7 @@ $(document).ready ->
 	datepicker()
 	
 datepicker = () ->
-	$(".date-picker").datepicker({ dateFormat: "yy-mm-dd", minDate: new Date(), maxDate: "+1y" })
+	$(".date-picker").datepicker { dateFormat: "yy-mm-dd", minDate: new Date(), maxDate: "+1y" }
 	
 join = () ->
 	if !$("#join").hasClass('disabled')
