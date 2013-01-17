@@ -35,4 +35,22 @@
 		<td><i class="icon-info-sign"></td>	
 		<td><%= raw @event.description %></td>
 	</tr>
+	
+	<% if @event.pictures.count > 0 %>
+		<tr>
+			<td><i class="icon-picture"></i></td>
+			<td>
+				<%= link_to pictures_event_path(@event), class: "link-with-icon" do %>
+					<%= pluralize(@event.pictures.count, "Picture") %>
+					<i class="icon-angle-right"></i>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
 </table>
+
+<div class="separator"></div>
+
+<p class="lead muted right">
+	23 Comments
+</p>

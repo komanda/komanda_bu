@@ -3,6 +3,7 @@ Komanda::Application.routes.draw do
   root :to => 'events#index'
   resources :events do
     get :join, on: :member
+    get :pictures, on: :member
   end
   
   resources :orders

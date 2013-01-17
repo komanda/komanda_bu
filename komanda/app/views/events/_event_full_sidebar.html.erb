@@ -4,9 +4,10 @@
 	<% if @event.upcoming? %>
 		<div class="separator"></div>
 		<% if current_user %>
-			<%= link_to "Buy ticket", "#{new_order_path}?event_id=#{@event.id}", class: "btn btn-primary" %>
+			<%= link_to "Buy ticket", "#{new_order_path}?event_id=#{@event.id}", 
+				class: "btn btn-primary" %>
 		<% else %>
-			<%= link_to "Buy ticket", signin_path %>
+			<%= link_to "Buy ticket", signin_path, class: "btn btn-primary" %>
 		<% end %>
 	<% end %>
 	

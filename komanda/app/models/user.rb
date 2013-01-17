@@ -18,7 +18,7 @@ class User
   # has_many :shares, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_and_belongs_to_many :events
-  attr_accessible :provider, :uid, :name, :img_url, :profile_url
+  attr_accessible :provider, :uid, :email, :name, :img_url, :profile_url
   validates_presence_of :provider, :uid
   
   def self.create_with_omniauth(auth)
@@ -42,5 +42,6 @@ class User
   
   def update_email(email)
     self.email = email
+    self.save
   end
 end

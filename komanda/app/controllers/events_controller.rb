@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :logged_in, only: :join
+  before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures]
+  
+  def find_event
+    @event = Event.find(params[:id])
+  end
   
   def index
     @upcoming = Event.upcoming
@@ -8,7 +13,6 @@ class EventsController < ApplicationController
   end
   
   def show
-    @event  = Event.find(params[:id])
     @events = Event.all
   end
 
@@ -18,6 +22,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+    @event.pictures = (params[:event][:pictures]).split
+    
     if @event.save
       render @event
     else
@@ -26,28 +32,28 @@ class EventsController < ApplicationController
   end
   
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     @event.update_attributes(params[:event])
-    # @event.assign_attributes(params[:party])
-    # @party.pics = (params[:party][:pics]).split
+    @event.update_attribute(:pictures, (params[:event][:pictures]).split)
     redirect_to @event, notice: "Event updated!"
   end
 
   def destroy
-    @event = Event.find(params[:id]).destroy
+    @event.destroy
     redirect_to root_path
   end
   
   def join
-    event = Event.find(params[:id])
-    event.join(current_user)
+    @event = Event.find(params[:id])
+    @event.join(current_user)
 
-    render json: { count:       event.users.count, 
+    render json: { count:       @event.users.count, 
                    image_url:   current_user.image_url,
                    profile_url: current_user.profile_url }
+  end
+  
+  def pictures
   end
 end

@@ -18,6 +18,7 @@ class Event
   field :price,       type: Float, default: 15.00
   field :views,       type: Integer, default: 0
   field :going,       type: Array, default: []
+  field :pictures,    type: Array, default: []
   field :ratings,     type: Hash, default: {}
   field :tickets,     type: Hash, default: {}
   field :_id,         type: String, default: ->{ name }

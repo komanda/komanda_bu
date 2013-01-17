@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
     
     def admin_user?
-      current_user.admin
+      current_user && current_user.admin
     end
     
     def authenticated_user?(object)

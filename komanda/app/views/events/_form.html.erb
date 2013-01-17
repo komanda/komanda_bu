@@ -64,11 +64,23 @@
 			<%= f.text_field :price %>
 		</div>
 	</div>
+	
+	<div class="control-group">
+		<div class="control-label"><%= f.label :pictures %></div>
+		<div class="controls">
+			<%= f.text_area :pictures, rows: 3, value: @event.pictures.join(' ') %>
+		</div>
+	</div>
 		
 	<div class="separator"></div>
 	
 	<div class="controls">
-		<%= f.submit "Create", class: "btn btn-primary" %>
+		<% if params[:action] == "new" %>
+			<%= f.submit "Create", class: "btn btn-primary" %>			
+		<% else %>
+			<%= f.submit "Update", class: "btn btn-primary" %>
+		<% end %>
+
 		<%= link_to "Cancel", root_path, class: "btn" %>
 	</div>
 <% end %>

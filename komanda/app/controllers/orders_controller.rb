@@ -1,6 +1,12 @@
 class OrdersController < ApplicationController
+  before_filter :valid_event, only: [:new, :create]
   before_filter :logged_in, only: [:new, :create]
   before_filter :admin_user, only: :index
+  
+  def valid_event
+    event_id = params[:event_id] || session[:event_id]
+    redirect_to root_path unless Event.find(event_id).upcoming?
+  end
   
   def index
     if params[:event_id]

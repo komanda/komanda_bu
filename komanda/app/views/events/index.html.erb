@@ -1,5 +1,5 @@
 <% if @upcoming.size > 0 %>
-	<h3 class="muted center">Upcoming Event</h3>
+	<h3 class="muted">Upcoming Event</h3>
 	<%= render 'upcoming', event: @upcoming.first %>
 <% else %>
 	<p class='lead'>We are planning our next event.</p>
@@ -12,7 +12,7 @@
 
 <% end %>
 
-<h3 class="muted center">Past Events</h3>
+<h3 class="muted">Past Events</h3>
 <div class="row">
 	<%= render @past %>
 </div>

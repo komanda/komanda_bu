@@ -34,21 +34,21 @@
 	<div class="control-group">
 		<div class="control-label"><%= f.label :email, "Email*" %></div>
 		<div class="controls">
-			<%= f.text_field :email, value: current_user.email %>
+			<%= f.text_field :email, class: "input-xlarge", value: current_user.email %>
 		</div>
 	</div>
 	
 	<div class="control-group">
 		<div class="control-label"><%= f.label :first_name, "First Name*" %></div>
 		<div class="controls">
-			<%= f.text_field :first_name %>
+			<%= f.text_field :first_name, class: "input-xlarge" %>
 		</div>
 	</div>
 	
 	<div class="control-group">
 		<div class="control-label"><%= f.label :last_name, "Last Name*" %></div>
 		<div class="controls">
-			<%= f.text_field :last_name %>
+			<%= f.text_field :last_name, class: "input-xlarge" %>
 		</div>
 	</div>
 	
@@ -67,14 +67,14 @@
 	<div class="control-group">
 		<div class="control-label"><%= f.label :card_number, "Card Number*" %></div>
 		<div class="controls">
-			<%= f.text_field :card_number %>
+			<%= f.text_field :card_number, class: "input-xlarge" %>
 		</div>
 	</div>
 	
 	<div class="control-group">
 		<div class="control-label"><%= f.label :card_verification, "CVV*" %></div>
 		<div class="controls">
-			<%= f.text_field :card_verification %>
+			<%= f.text_field :card_verification, class: "input-mini" %>
 		</div>
 	</div>
 	
