@@ -1,5 +1,7 @@
 $(document).ready ->
 	join()
+	rating()
+	add_rating_on_hover()
 	datepicker()
 	add_links_to_pictures()
 	close_picture_modal_with_esc()
@@ -12,7 +14,7 @@ join = () ->
 	if !$("#join").hasClass('disabled')
 		$("#join").click (event) ->
 			event.preventDefault()
-			$("#join").html("<i class='icon-spinner icon-spin icon-large'>")
+			$("#join").html("<i class='icon-spinner icon-spin icon-large'></i>")
 		
 			$.ajax
 				type: 'get'
@@ -20,14 +22,14 @@ join = () ->
 				timeout: 8000
 				dataType: 'json'
 				success: (json) ->
-					$("#error").slideUp()
+					$("#error").hide()
 					$("#join").html("Going").attr("href", "#").addClass("disabled")
-					$("#going-count").text(json.count).effect('highlight')
+					$("#going-count").text(json.count).effect('highlight', {color: '#FCF8E3'}, 2000)
 					$("#going").prepend("<li><a href=" + 
 															 json.profile_url + "><img src=" + 
 															 json.image_url + "></a></li>")
 				error: ->
-					$("#error").slideDown()
+					$("#error").slideDown('fast')
 					$("#join").html("Join")
 
 add_links_to_pictures = () ->
@@ -65,12 +67,10 @@ add_links_to_pictures = () ->
 attach_left_right_keys = () ->
 	$(this).keydown (event) ->
 		if event.keyCode == 37
-			console.log "left pressed"
 			$("#prev-button").click()
 
 	$(this).keydown (event) ->
 		if event.keyCode == 39
-			console.log("right pressed")
 			$("#next-button").click()
 
 close_picture_modal_with_esc = () ->
@@ -80,7 +80,60 @@ close_picture_modal_with_esc = () ->
 
 	$(this).keydown (event) ->
 		if event.keyCode == 27
-			console.log("esc pressed")
 			$("#picture-modal").hide()
+			
+rating = () ->
+	$("#rate a").click (event) ->
+		event.preventDefault()
+		$("#rating-loading").show()
+		$("#rate").css("opacity", 0.1)
+		
+		$.ajax
+			type: 'get'
+			url: $(this).attr("href") 
+			timeout: 8000
+			dataType: 'json'
+			success: (json) ->
+				$("#rating-error").hide()
+				$("#rate").attr("val", json.new_rating)
+				$("#rate").css("opacity", 1)
+				$("#ratings-count").text(json.count).effect('highlight', {color: '#FCF8E3'}, 2000)
+				$("#rating-loading").hide()
+			error: ->
+				$("#rating-error").slideDown('fast')
+				$("#rate").css("opacity", 1)
+				$("#rating-loading").hide()
+				
+add_rating_on_hover = () ->
+	$("#rate a").mouseover ->
+		$(this).children().first().attr("src", "/assets/star.png")
+		prev = $(this).prevAll();
+		next = $(this).nextAll();
+
+		for i in [0..(prev.length)]
+			$(prev[i]).children().first().attr("src", "/assets/star.png")
+			
+		for j in [0..(next.length)]
+			$(next[j]).children().first().attr("src", "/assets/star_empty.png")
+
+
+	$("#rate").mouseleave ->
+		set_rating()
+
+set_rating = () ->
+	rating = parseInt($("#rate").attr("val"))
+
+	links = $("#rate").children()
+
+	for i in [0..(rating - 1)]
+		$(links[i]).children().first().attr("src", "/assets/star.png")
+		
+	for i in [(rating)..5]
+		$(links[i]).children().first().attr("src", "/assets/star_empty.png")
+
+			
+		
+		
+		
 
 	

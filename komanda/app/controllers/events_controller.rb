@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :logged_in, only: :join
-  before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures]
+  before_filter :logged_in, only: [:join, :rate]
+  before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures, :join, :rate]
   
   def find_event
     @event = Event.find(params[:id])
@@ -46,7 +46,6 @@ class EventsController < ApplicationController
   end
   
   def join
-    @event = Event.find(params[:id])
     @event.join(current_user)
 
     render json: { count:       @event.users.count, 
@@ -55,5 +54,13 @@ class EventsController < ApplicationController
   end
   
   def pictures
+  end
+  
+  def rate
+    @event.ratings["#{current_user.id}"] = params[:rating].to_i
+    @event.save
+    
+    render json: { new_rating:  @event.rating,
+                   count:       @event.ratings.count }
   end
 end

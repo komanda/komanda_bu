@@ -49,8 +49,8 @@
 	<% end %>
 </table>
 
-<div class="separator"></div>
+<div id="comments">
+	<%= render @event.comments %>
+</div>
+<%= render "comments/form" %>
 
-<p class="lead muted right">
-	23 Comments
-</p>

@@ -1,9 +1,12 @@
 Komanda::Application.routes.draw do
 
   root :to => 'events#index'
+  
   resources :events do
     get :join, on: :member
+    get :rate, on: :member
     get :pictures, on: :member
+    resources :comments
   end
   
   resources :orders

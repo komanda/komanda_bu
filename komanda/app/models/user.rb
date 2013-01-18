@@ -9,11 +9,11 @@ class User
   field :profile_url
   field :email, default: nil
   field :admin, default: false
-  field :votes, type: Array, default: []
-  field :ratings, type: Hash, default: {}
+  # field :votes, type: Array, default: []
+  # field :ratings, type: Hash, default: {}
   
   index({ provider: 1, uid: 1}, { unique: true })
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   # has_many :suggestions, dependent: :destroy
   # has_many :shares, dependent: :destroy
   has_many :orders, dependent: :destroy

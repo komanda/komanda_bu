@@ -1,4 +1,4 @@
-@import "mixins"
+@import 'mixins'
 
 table i
 	opacity: 0.5
@@ -102,10 +102,17 @@ aside
 		background: white
 				
 .rating
+	position: relative
 	width: 191px
 	margin: 0 auto
-
-
+	#rate
+		+transition(0.2s)
+	#rating-loading
+		display: none
+		position: absolute
+		top: 10px
+		left: 90px
+		
 
 .thumbnails
 	margin-top: 15px
@@ -127,6 +134,8 @@ aside
 	+transition(0.2s)
 	+border-radius(3px)
 	opacity: 0.8
+	display: block
+	margin: 0 auto
 .picture-container
 	+transition(0.2s)
 	+border-radius(4px)

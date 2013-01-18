@@ -17,15 +17,14 @@ class Event
   field :map_link,    type: String
   field :price,       type: Float, default: 15.00
   field :views,       type: Integer, default: 0
-  field :going,       type: Array, default: []
   field :pictures,    type: Array, default: []
   field :ratings,     type: Hash, default: {}
   field :tickets,     type: Hash, default: {}
   field :_id,         type: String, default: ->{ name }
   
   index({ id: 1})
+  has_many :comments, as: :commentable, dependent: :destroy
   has_and_belongs_to_many :users
-  # has_many :comments, as: :commentable, dependent: :destroy
   validates_presence_of :name, :date, :time, :flyer, :description, :address
   
   def upcoming?
@@ -33,6 +32,22 @@ class Event
   end
   
   def join(user)
-    self.users << user unless self.users.include?(user)
+    if upcoming?
+      self.users << user unless self.users.include?(user)
+    end
   end
+  
+  def rating
+    if self.ratings.empty?
+      return 0
+    else
+      avg = 0
+      self.ratings.each_value do |value|
+        avg += value.to_i
+      end
+
+      return avg / self.ratings.count.to_i
+    end
+  end
+  
 end
