@@ -19,7 +19,9 @@ post_comment = () ->
 				timeout: 8000
 				dataType: 'json'
 				success: (json) ->
+					update_comment_count(json.count)
 					append_comment(json)
+					
 				error: ->
 					$("#comment-error").slideDown('fast')
 		else
@@ -39,4 +41,8 @@ append_comment = (json) ->
 		$("#" + json.dom_id).effect('highlight', {color: '#FCF8E3'}, 2000)
 		$("#post").html("Post")
 		
-		
+update_comment_count = (count) ->
+	if count == 1
+		$("#comment-count").text("1 Comment")
+	else
+		$("#comment-count").text(count + " Comments")

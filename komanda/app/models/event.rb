@@ -50,4 +50,11 @@ class Event
     end
   end
   
+  def tickets_sold
+    total = 0
+    self.tickets.values.each do |v|
+      total += v
+    end
+    total
+  end
 end

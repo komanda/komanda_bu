@@ -16,4 +16,5 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require jquery.ui.effect-highlight
+//= require jquery.ui.effect-slide
 //= require_tree .

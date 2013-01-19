@@ -6,7 +6,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-			<%= link_to "Komanda", root_path, class: "brand" %>
+			<%= link_to root_path, class: "brand" do %>
+				<%= image_tag 'star.png', size: "40x40" %> komanda
+			<% end %>
       <div class="nav-collapse collapse">
         <ul class="nav">
 					<li class="<%= "active" if events_controller? %>"><%= link_to "Events", root_path %></li>

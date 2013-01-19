@@ -25,9 +25,10 @@ join = () ->
 					$("#error").hide()
 					$("#join").html("Going").attr("href", "#").addClass("disabled")
 					$("#going-count").text(json.count).effect('highlight', {color: '#FCF8E3'}, 2000)
-					$("#going").prepend("<li><a href=" + 
+					$("#going").prepend("<li class='hide' id='_join'><a href=" + 
 															 json.profile_url + "><img src=" + 
 															 json.image_url + "></a></li>")
+					$("#_join").effect("slide")
 				error: ->
 					$("#error").slideDown('fast')
 					$("#join").html("Join")

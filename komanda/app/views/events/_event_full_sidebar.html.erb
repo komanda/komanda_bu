@@ -1,3 +1,7 @@
+<% if admin_user? %>
+	<%= render 'controlls' %>
+<% end %>
+
 <div class="default">
 	<%= image_tag @event.flyer %>
 	
@@ -16,3 +20,7 @@
 <%= render 'rating' %>
 
 <%= render 'going' %>
+
+<% if @event.pictures.count > 0 %>
+	<%= render 'pictures_preview' %>
+<% end %>

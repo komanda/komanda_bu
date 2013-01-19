@@ -2,18 +2,26 @@ class EventsController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :logged_in, only: [:join, :rate]
   before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures, :join, :rate]
+  before_filter :increment_views, only: :show
+  before_filter :get_upcoming_and_past_event, only: [:show, :index]
   
   def find_event
     @event = Event.find(params[:id])
   end
   
-  def index
+  def get_upcoming_and_past_event
     @upcoming = Event.upcoming
     @past     = Event.past
   end
   
+  def increment_views
+    @event.inc(:views, 1)
+  end
+  
+  def index
+  end
+  
   def show
-    @events = Event.all
   end
 
   def new

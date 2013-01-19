@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.find(params[:id])
     if authenticated_user?(@comment)
       @comment.destroy
+      @count = @commentable.comments.count
       respond_to do |format| 
         format.js
       end

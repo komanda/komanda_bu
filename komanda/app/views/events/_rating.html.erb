@@ -1,4 +1,8 @@
 <div class="default">
+	<p class="lead muted">
+		Ratings (<span id="ratings-count"><%= @event.ratings.count %></span>)
+	</p>
+	
 	<div class="alert alert-error hide" id="rating-error">
 		<i class="icon-exclamation-sign"></i> Oops, something went wrong. Try reloading the page.
 	</div>
@@ -33,10 +37,5 @@
 		<i class='icon-spinner icon-spin icon-large' id="rating-loading"></i>
 		
 	</div>
-	
-	<div class="separator"></div>
-	<p class="lead muted">
-		Ratings (<span id="ratings-count"><%= @event.ratings.count %></span>)
-	</p>
 </div>
 

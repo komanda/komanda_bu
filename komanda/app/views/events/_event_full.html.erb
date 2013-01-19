@@ -1,15 +1,8 @@
-<% if admin_user? %>
-	<div class="alert alert-info center">
-		<%= link_to "Edit", edit_event_path(@event), class: "btn" %>
-		<%= link_to "Delete", edit_event_path(@event), class: "btn btn-danger",
-			method: :delete, :data => { :confirm => 'Are you sure you want to delete this event?' } %>
+
+<% if notice %>
+	<div class="alert alert-success">
+		<%= notice %>
 	</div>
-	<% if notice %>
-		<div class="alert alert-success">
-			<%= notice %>
-		</div>
-	<% end %>
-	
 <% end %>
 
 <h2><%= @event.name %></h2>
@@ -36,17 +29,12 @@
 		<td><%= raw @event.description %></td>
 	</tr>
 	
-	<% if @event.pictures.count > 0 %>
-		<tr>
-			<td><i class="icon-picture"></i></td>
-			<td>
-				<%= link_to pictures_event_path(@event), class: "link-with-icon" do %>
-					<%= pluralize(@event.pictures.count, "Picture") %>
-					<i class="icon-angle-right"></i>
-				<% end %>
-			</td>
-		</tr>
-	<% end %>
+	<tr>
+		<td><i class="icon-comment"></i></td>
+		<td>			
+			<strong id="comment-count"><%= pluralize @event.comments.count, "Comment" %></strong>
+		</td>
+	</tr>
 </table>
 
 <div id="comments">
