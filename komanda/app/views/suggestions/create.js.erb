@@ -1,0 +1,23 @@
+<% if @suggestion.errors.count > 0 %>
+	$("#suggestion-error").slideDown()
+<% else %>
+	$("#suggestions-count").text("<%= @count + 1 %>")
+	$("#suggestions").prepend("<%= escape_javascript (render @suggestion) %>")
+	$("#<%= dom_id @suggestion %>").effect("highlight", {color: '#FCF8E3'}, 2000)	
+	fix_comment_toggle("#<%= dom_id @suggestion %>")
+	clean_up()
+<% end %>	
+
+function clean_up() {
+	$("#suggestion-modal").modal('hide')
+	$("#suggestion-error").hide()
+	$("#new_suggestion input").val("")
+	$("#submit").val("Post")
+}
+
+function fix_comment_toggle(id) {
+	$(id + " .comment-toggle").click(function(e) { e.preventDefault() })
+}
+
+$("#submit").toggle()
+$("#dummy-button").toggle()

@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
         else
           return current_user.comments.include?(object) || current_user.admin
         end
+      else
+        false
       end
       
       return false

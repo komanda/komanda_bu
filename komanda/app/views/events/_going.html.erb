@@ -30,11 +30,15 @@
 	<ul class="unstyled clearfix" id="going">
 		<% if @event.users.count <= 8 %>
 			<% @event.users.each do |user| %>
-				<li><%= link_to image_tag(user.image_url), user.profile_url, target: "_blank" %></li>
+				<li rel="tooltip" title="<%= user.name %>">
+					<%= link_to image_tag(user.image_url), 
+						user.profile_url, 
+						target: "_blank" %>
+				</li>
 			<% end %>
 		<% else %>
 			<% for i in (@event.users.count - 1)..(@event.users.count - 8) %>
-				<li>
+				<li rel="tooltip" title="<%= @event.users[i].name %>">
 					<%= link_to image_tag(@event.users[i].image_url), 
 											@event.users[i].profile_url, 
 											target: "_blank" %>

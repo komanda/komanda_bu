@@ -6,6 +6,7 @@ $(document).ready ->
 	add_links_to_pictures()
 	close_picture_modal_with_esc()
 	attach_left_right_keys()
+	$("li[rel=tooltip]").tooltip()
 	
 datepicker = () ->
 	$(".date-picker").datepicker { dateFormat: "yy-mm-dd", minDate: new Date(), maxDate: "+1y" }
@@ -25,10 +26,12 @@ join = () ->
 					$("#error").hide()
 					$("#join").html("Going").attr("href", "#").addClass("disabled")
 					$("#going-count").text(json.count).effect('highlight', {color: '#FCF8E3'}, 2000)
-					$("#going").prepend("<li class='hide' id='_join'><a href=" + 
+					$("#going").prepend("<li class='hide' id='_new' rel='tooltip'
+															 title=" + json.name + "><a href=" + 
 															 json.profile_url + "><img src=" + 
 															 json.image_url + "></a></li>")
-					$("#_join").effect("slide")
+					$("#_new").effect("slide")
+					$("#_new").tooltip()
 				error: ->
 					$("#error").slideDown('fast')
 					$("#join").html("Join")

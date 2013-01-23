@@ -1,0 +1,50 @@
+@import "mixins"
+
+#submit,
+#dummy-button
+	width: 55px
+	
+
+.suggestion
+	position: relative
+	overflow: hidden
+	padding-bottom: 0
+	&:hover
+		.suggestion-stats
+			top: 12px
+	img
+		+box-sizing
+		+transition(0.2s)
+		+border-radius(2px)
+		border: 1px solid rgba(128, 128, 128, 0.2)
+		width: 45px
+		height: auto	
+		&:hover
+			border-color: rgba(128, 128, 128, 0.4)
+	i
+		margin-right: 7px
+	.comment
+		img
+			width: 40px
+			height: auto
+	#form
+		border: 0
+		img
+			width: 40px
+			height: auto
+	.suggestion-stats
+		+transition(0.2s)
+		.comment-toggle
+			+transition(0.2s)
+			color: rgba(128, 128, 128, 0.8)
+			&:hover
+				color: $base-color
+		position: absolute
+		top: -30px
+		right: 30px
+		img
+			margin: -6px 0
+			padding-bottom: 6px
+			border: 0
+			width: 30px
+			height: auto

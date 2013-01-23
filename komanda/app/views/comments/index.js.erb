@@ -1,0 +1,4 @@
+$("#loading-comments-<%= @commentable.id %>").remove()
+$("#suggestion-comments-<%= @commentable.id %>").html(
+	"<%= escape_javascript(render @comments, commentable: @commentable) %>")
+$("#comment-toggle-<%= @commentable.id %>").attr("href", "#").attr("data-remote", "")

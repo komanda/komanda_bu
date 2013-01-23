@@ -1,11 +1,8 @@
 <% if current_user %>
 	<article id="form" class="media">
-		<div id="empty-comment-error" class="alert alert-error center hide">
+		<div id="empty-comment-error-<%= commentable.id %>" 
+			class="alert alert-error center hide empty-comment-error">
 			<i class="icon-exclamation-sign"></i> Empty comment.
-		</div>
-		
-		<div id="comment-error" class="alert alert-error center hide">
-			<i class="icon-exclamation-sign"></i> Oops, something went wrong. Try reloading the page.
 		</div>
 		
 		<%= link_to image_tag(current_user.image_url),
@@ -15,8 +12,17 @@
 
 		<div class="media-body">
 			<div class="media-heading">
-				<%= text_field_tag "content", nil, placeholder: "Leave a comment", class: "span6", id: "content" %>
-				<%= link_to "Post", "/events/#{@event.id}/comments", class: "btn btn-primary", id: "post", mothod: :post %>
+				
+				<%= form_for [commentable, Comment.new], html: { class: "form" }, remote: true do |f| %>
+					
+					<%= f.text_area :content, rows: 2, class: "span5" %><br/>
+					
+					<%= f.submit "Post", class: "btn btn-primary post-comment",
+						id: "post-comment-#{commentable.id}", style: "width:55px" %>
+					<button class="btn btn-primary hide loading-comment" style="width:55px"
+						id="loading-comment-<%= commentable.id %>">
+						<i class="icon-spinner icon-spin"></i></button>
+				<% end %>
 			</div>
 		</div>
 	</article>

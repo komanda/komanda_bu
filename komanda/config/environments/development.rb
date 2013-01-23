@@ -29,6 +29,8 @@ Komanda::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
+  config.serve_static_assets = false
+  
   # PayPal config
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test

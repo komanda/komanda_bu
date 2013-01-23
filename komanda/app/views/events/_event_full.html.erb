@@ -9,7 +9,6 @@
 
 <div class="separator"></div>
 
-
 <table>
 	<tr>
 		<td class="icon"><i class="icon-calendar"></i></td>
@@ -30,7 +29,7 @@
 	</tr>
 	
 	<tr>
-		<td><i class="icon-comment"></i></td>
+		<td><i class="icon-comments"></i></td>
 		<td>			
 			<strong id="comment-count"><%= pluralize @event.comments.count, "Comment" %></strong>
 		</td>
@@ -38,7 +37,7 @@
 </table>
 
 <div id="comments">
-	<%= render @event.comments %>
+	<%= render @event.comments, commentable: @event %>
 </div>
-<%= render "comments/form" %>
+<%= render "comments/form", commentable: @event %>
 

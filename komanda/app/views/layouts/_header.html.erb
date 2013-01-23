@@ -11,8 +11,10 @@
 			<% end %>
       <div class="nav-collapse collapse">
         <ul class="nav">
-					<li class="<%= "active" if events_controller? %>"><%= link_to "Events", root_path %></li>
-          <li><a href="#about">About</a></li>
+					<li class="<%= "active" if events_controller? %>">
+						<%= link_to "Events", root_path %></li>
+          <li class="<%= "active" if suggestions_controller? %>">
+						<%= link_to "Suggestions", suggestions_path %></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 				<ul class="nav pull-right">

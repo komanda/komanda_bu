@@ -6,17 +6,25 @@
 		padding: 10px 0
 		border-top: 1px solid rgba(128, 128, 128, 0.2)
 		img
+			+box-sizing
+			+transition(0.2s)
 			+border-radius(2px)
-			width: 40px
+			border: 1px solid rgba(128, 128, 128, 0.2)
+			width: 45px
 			height: auto
+			&:hover
+				border-color: rgba(128, 128, 128, 0.4)
 
 #form
 	margin: 0
 	padding: 15px 0 0
 	border-top: 1px solid rgba(128, 128, 128, 0.2)
 	img
+		+box-sizing
+		+transition(0.2s)
 		+border-radius(2px)
-		width: 40px
+		border: 1px solid rgba(128, 128, 128, 0.2)
+		width: 45px
 		height: auto
-	#post
-		width: 55px
+		&:hover
+			border-color: rgba(128, 128, 128, 0.4)

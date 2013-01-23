@@ -9,6 +9,11 @@ Komanda::Application.routes.draw do
     resources :comments
   end
   
+  resources :suggestions do
+    get :star, on: :member
+    resources :comments
+  end
+  
   resources :orders
   
   match '/auth/:provider/callback' => 'sessions#create'

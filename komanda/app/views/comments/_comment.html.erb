@@ -1,8 +1,16 @@
 <article id="<%= dom_id comment %>" class="media comment">
-	<% if current_user && authenticated_user?(comment) %>
-		<%= link_to "×", event_comment_path(@event, comment), 
-			class: "close", 
-			method: :delete, remote: true %>
+	<% if authenticated_user?(comment) %>
+		
+		<% if commentable.class.to_s == "Event" %>
+			<%= link_to "×", event_comment_path(commentable, comment), 
+				class: "close", 
+				method: :delete, remote: true %>
+		<% else %>
+			<%= link_to "×", suggestion_comment_path(commentable, comment), 
+				class: "close", 
+				method: :delete, remote: true %>
+		<% end %>
+		
 	<% end %>
 	
 	<%= link_to image_tag(comment.user.image_url),

@@ -57,6 +57,7 @@ class EventsController < ApplicationController
     @event.join(current_user)
 
     render json: { count:       @event.users.count, 
+                   name:        current_user.name,
                    image_url:   current_user.image_url,
                    profile_url: current_user.profile_url }
   end
