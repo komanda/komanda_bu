@@ -11,6 +11,7 @@ Komanda::Application.routes.draw do
   
   resources :suggestions do
     get :star, on: :member
+    get :popular, on: :collection
     resources :comments
   end
   

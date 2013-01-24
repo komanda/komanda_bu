@@ -2,6 +2,8 @@ $(document).ready ->
 	post_button_loading_effect()
 	fix_comment_toggle()
 	fix_star_link()
+	fix_sort_dropdown()
+	add_loading_effect_to_sort()
 
 post_button_loading_effect = () ->
 	$("#submit").click ->
@@ -18,9 +20,26 @@ fix_comment_toggle = () ->
 		
 fix_star_link = () ->
 	$(".star").click (event) ->
-		console.log($(this).attr("src"))
-		star = $(this).attr("src")
-		if star == "star.png"
-			$(this).attr("src", "/assets/star_empty.png")
+		star = $(this).find("img").first()
+		if $(star).attr("src") == "/assets/star.png"
+			$(star).attr("src", "/assets/star_empty.png")
 		else
-			$(this).attr("src", "/assets/star.png")
+			$(star).attr("src", "/assets/star.png")
+
+fix_sort_dropdown = () ->
+	$(".dropdown-toggle").dropdown()
+	
+	$("#recent").click (event) ->
+		$("#popular").find("i").first().addClass("icon-check-empty").removeClass("icon-check")
+		$("#recent").find("i").first().addClass("icon-check").removeClass("icon-check-empty")
+		$("#sort").text("recent")
+	
+	$("#popular").click (event) ->
+		$("#recent").find("i").first().addClass("icon-check-empty").removeClass("icon-check")
+		$("#popular").find("i").first().addClass("icon-check").removeClass("icon-check-empty")
+		$("#sort").text("popular")
+
+add_loading_effect_to_sort = () ->
+	$("#recent, #popular").click () ->
+		$("#suggestions").css("opacity", "0.5")
+		$(".sort-loading").show()

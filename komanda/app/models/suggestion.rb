@@ -3,9 +3,8 @@ class Suggestion
   include Mongoid::Timestamps
   include ActionView::Helpers::SanitizeHelper
   
-  default_scope               desc(:created_at)
-  scope :popular_by_stars,    order_by(:stars_count.desc, :comment_count.desc, :created_at.desc)
-  scope :popular_by_comments, order_by(:comment_count.desc, :stars_count.desc, :created_at.desc)
+  scope :recent, desc(:created_at)
+  scope :popular, order_by(:star_count.desc, :comment_count.desc, :created_at.desc) 
   
   field :location
   field :music
@@ -13,25 +12,20 @@ class Suggestion
   field :food_drinks
   field :other
   field :stars,         type: Array, default: []
-  field :stars_count,   type: Integer, default: 0
+  field :star_count,    type: Integer, default: 0
   field :comment_count, type: Integer, default: 0  
   index({ id: 1})
   
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
-  attr_accessible :location, :music, :games, :food_drinks, :other, :votes
+  attr_accessible :location, :music, :games, :food_drinks, :other, :stars
   validate :valid_suggestion
   
   def star(user)
-    if self.stars.include?(user.id)
-      self.stars.delete(user.id)
-      self.inc(:stars_count, -1)
-    else
-      self.stars << user.id
-      self.inc(:stars_count, 1)
-    end
+    self.stars.include?(user.id) ? self.stars.delete(user.id) : self.stars << user.id
+    self.star_count = self.stars.count
     self.save
-    self.stars_count
+    self.star_count
   end
     
   private

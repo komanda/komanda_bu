@@ -35,10 +35,16 @@
 				<div class="span3">
 					<h3>Suggestions (<span id="suggestions-count"><%= @suggestions.count %></span>)</h3>
 				</div>
+				<div class="pull-right">
+					<%= render 'sort' %>
+				</div>
 			</div>
 			
-			<div id="suggestions">
-				<%= render @suggestions %>
+			<div class="suggestions-container">
+				<div class="center sort-loading"><i class="icon-spinner icon-spin icon-3x"></i></div>
+				<div id="suggestions">
+					<%= render @suggestions %>
+				</div>
 			</div>
 		<% end %>
 		

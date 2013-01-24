@@ -20,6 +20,10 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
       @comment.save
       @count = @commentable.comments.count
+      
+      if @commentable.class.to_s == "Suggestion"
+        update_comment_count(@commentable)
+      end
     end
   end
   
@@ -28,10 +32,19 @@ class CommentsController < ApplicationController
     if authenticated_user?(@comment)
       @comment.destroy
       @count = @commentable.comments.count
+      
+      if @commentable.class.to_s == "Suggestion"
+        update_comment_count(@commentable)
+      end
     end
   end
   
   private
+    
+    def update_comment_count(commentable)
+      commentable.update_attribute(:comment_count, @commentable.comments.count)
+    end
+    
     def spam?
       if current_user.comments.count > 0
         return (Time.now - current_user.comments.last.created_at) <= 1 

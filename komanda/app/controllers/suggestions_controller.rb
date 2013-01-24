@@ -2,7 +2,7 @@ class SuggestionsController < ApplicationController
   before_filter :logged_in, except: :index
   before_filter :suggestions_count, only: [:index, :new, :create, :destroy]
   before_filter :new_suggestion, only: [:index, :new]
-  before_filter :suggestion, only: [:star, :unstar, :destroy]
+  before_filter :suggestion, only: [:star, :destroy]
   
   def suggestion
     @suggestion = Suggestion.find(params[:id])
@@ -15,9 +15,13 @@ class SuggestionsController < ApplicationController
   def suggestions_count
     @count = Suggestion.count
   end
-  
+    
   def index
-    @suggestions = Suggestion.all
+    @suggestions = Suggestion.recent
+  end
+  
+  def popular
+    @suggestions = Suggestion.popular
   end
   
   def new
@@ -43,7 +47,7 @@ class SuggestionsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+    
   def star
     @count = @suggestion.star(current_user)
   end

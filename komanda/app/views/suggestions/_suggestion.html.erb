@@ -65,12 +65,17 @@
 				
 				<tr>
 					<td></td>
-					<td>
-						
+					<td> 
 						<div class="collapse" id="comments-<%= suggestion.id %>">
+							
+							<div class="separator"></div>
+							
+							
 							<% if suggestion.comments.count > 0 %>
 								<div class="loading-comments center hide" id="loading-comments-<%= suggestion.id %>">
 									<i class="icon-spinner icon-large icon-spin"></i></div>
+								<div id="suggestion-comments-<%= suggestion.id %>"></div>
+							<% else %>
 								<div id="suggestion-comments-<%= suggestion.id %>"></div>
 							<% end %>
 
