@@ -18,12 +18,12 @@
 	margin-top: 20px
 
 .suggestion
-	position: relative
-	overflow: hidden
+	+transition(0.2s)
 	padding-bottom: 0
 	&:hover
+		border-color: rgba(128, 128, 128, 0.4)
 		.suggestion-stats
-			top: 12px
+			opacity: 1
 	img
 		+box-sizing
 		+transition(0.2s)
@@ -45,18 +45,23 @@
 			width: 40px
 			height: auto
 	.suggestion-stats
-		+transition(0.2s)
+		+text-shadow
+		background: rgba(128, 128, 128, 0.2)
+		margin: 0 -10px
+		padding: 5px 10px
 		.comment-toggle
 			+transition(0.2s)
 			color: rgba(128, 128, 128, 0.8)
-			&:hover
-				color: $base-color
-		position: absolute
-		top: -30px
-		right: 30px
 		img
 			margin: -6px 0
 			padding-bottom: 6px
 			border: 0
 			width: 30px
 			height: auto
+		a:visited
+			color: rgba(128, 128, 128, 0.8)
+		a:hover
+			color: $base-color
+	.comments:first-child
+		margin-top: 10px
+		

@@ -28,7 +28,7 @@ function fix_comment_loading_effect() {
 
 function fix_comment_toggle() {
 	$(".comment-toggle").click(function(e) {
-		event.preventDefault()
-		$(this).parent().siblings().find(".loading-comments").first().show()
+		e.preventDefault()
+		$(this).parent().parent().siblings().find(".loading-comments").first().show()
 	})
 }

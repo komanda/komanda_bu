@@ -1,7 +1,7 @@
 class SuggestionsController < ApplicationController
   before_filter :logged_in, except: :index
   before_filter :suggestions_count, only: [:index, :new, :create, :destroy]
-  before_filter :new_suggestion, only: [:index, :new]
+  before_filter :new_suggestion, only: [:index, :popular, :new]
   before_filter :suggestion, only: [:star, :destroy]
   
   def suggestion
@@ -17,6 +17,8 @@ class SuggestionsController < ApplicationController
   end
     
   def index
+    @upcoming = Event.upcoming
+    @past     = Event.past
     @suggestions = Suggestion.recent
   end
   

@@ -16,7 +16,7 @@ toggle_loading_effect = () ->
 fix_comment_toggle = () ->
 	$(".comment-toggle").click (event) ->
 		event.preventDefault()
-		$(this).parent().siblings().find(".loading-comments").first().show()
+		$(this).parent().parent().siblings().find(".loading-comments").first().show()
 		
 fix_star_link = () ->
 	$(".star").click (event) ->

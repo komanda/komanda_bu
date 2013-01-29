@@ -13,7 +13,7 @@
 						data-target="#suggestion-modal" data-toggle="modal" data-keyboard="true">
 						Suggest</button>
 				
-					<%= link_to "Suggest", new_suggestion_path, class: "btn btn-primary btn-large visible-phone" %>
+					<%= link_to "Suggest", new_suggestion_path, class: "btn btn-primary visible-phone" %>
 					
 				<% else %>
 					<button id="suggestion-button" class="btn btn-primary hidden-phone hide" 
@@ -49,10 +49,6 @@
 		<% end %>
 		
 	</div>
-	
-	<aside class="span5 event-navbar">
-		<%= render "events/event_full_nav" %>
-	</aside>
 </div>
 
 <%= render 'modal' %>
