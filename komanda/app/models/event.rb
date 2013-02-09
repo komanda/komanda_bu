@@ -31,8 +31,8 @@ class Event
     self.date >= Date.current()
   end
   
-  def join(user)
-    if upcoming?
+  def join(user, reseeding)
+    if upcoming? || reseeding
       self.users << user unless self.users.include?(user)
     end
   end

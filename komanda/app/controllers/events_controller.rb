@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :logged_in, only: [:join, :rate]
-  before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures, :join, :rate]
+  before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures, :join, :rate, :going]
   before_filter :increment_views, only: :show
   before_filter :get_upcoming_and_past_event, only: [:show, :index]
   
@@ -22,6 +22,13 @@ class EventsController < ApplicationController
   end
   
   def show
+    count = @event.users.count
+    
+    if count > 8
+      @going = @event.users.skip(count - 8)
+    else
+      @going = @event.users
+    end
   end
 
   def new
@@ -54,7 +61,7 @@ class EventsController < ApplicationController
   end
   
   def join
-    @event.join(current_user)
+    @event.join(current_user, false)
 
     render json: { count:       @event.users.count, 
                    name:        current_user.name,
@@ -71,5 +78,9 @@ class EventsController < ApplicationController
     
     render json: { new_rating:  @event.rating,
                    count:       @event.ratings.count }
+  end
+  
+  def going
+    @going = @event.users
   end
 end

@@ -15,9 +15,14 @@
   <![endif]-->
 </head>
 <body>
-	<%= render "layouts/header" unless sessions_controller? %>
-	<section class="container top">
-		<%= yield %>
-	</section>
+	<div id="wrap">
+		<%= render "layouts/header" unless sessions_controller? %>
+		<section class="container top">
+			<%= yield %>
+		</section>
+		<div id="push"></div>
+	</div>
+	<%= render 'layouts/footer' unless sessions_controller? %>
+	
 </body>
 </html>

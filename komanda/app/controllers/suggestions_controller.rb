@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-  before_filter :logged_in, except: :index
+  before_filter :logged_in, except: [:index, :popular]
   before_filter :suggestions_count, only: [:index, :new, :create, :destroy]
   before_filter :new_suggestion, only: [:index, :popular, :new]
   before_filter :suggestion, only: [:star, :destroy]
@@ -53,5 +53,5 @@ class SuggestionsController < ApplicationController
   def star
     @count = @suggestion.star(current_user)
   end
-  
+
 end

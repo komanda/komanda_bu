@@ -1,8 +1,11 @@
 Komanda::Application.routes.draw do
 
+  get "shares/index"
+
   root :to => 'events#index'
   
   resources :events do
+    get :going, on: :member
     get :join, on: :member
     get :rate, on: :member
     get :pictures, on: :member
@@ -14,6 +17,8 @@ Komanda::Application.routes.draw do
     get :popular, on: :collection
     resources :comments
   end
+  
+  resources :shares
   
   resources :orders
   

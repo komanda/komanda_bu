@@ -1,4 +1,4 @@
-<div class="default">
+<div class="default clearfix">
 	<p class="lead muted">Pictures (<%= @event.pictures.count %>)</p>
 	
 	<div id="pictures-sidebar">
@@ -15,7 +15,7 @@
 		<% end %>
 	</div>
 	
-	<% if @event.pictures.count > 8 %>
+	<% if @event.pictures.count > 9 %>
 		<p>
 			<%= link_to "See all", pictures_event_path(@event) %>
 		</p>
