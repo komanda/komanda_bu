@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :store_url, only: [:new, :destroy]
+  
   def new
     redirect_to root_path if current_user
   end
@@ -9,11 +11,11 @@ class SessionsController < ApplicationController
             User.create_with_omniauth(auth)
     @user.update_attribute(:img_url, auth["info"]["image"])
     session[:user_id] = @user.id
-    redirect_to root_path
+    redirect_back
   end
   
   def destroy
     session[:user_id] = nil    
-    redirect_to root_path
+    redirect_back
   end
 end

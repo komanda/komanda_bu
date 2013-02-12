@@ -9,20 +9,20 @@ printf " Done!\n"
 # Create users
 
 printf("Creating users...")
-User.create(
-  provider: "google_oauth2",
-  uid: "103321783031167252090",
-  name: "Ekaterina Makarova",
-  image_url: "https://lh3.googleusercontent.com/-ZNjuTYySzRM/AAAAAAAAAAI/AAAAAAAACNA/NRMmsztzYxQ/photo.jpg",
-  profile_url: "https://plus.google.com/103321783031167252090"
-)
-User.create(
-provider: "google_oauth2",
-uid: "116077413933138989125",
-name: "Mikhail Smirnov",
-image_url: "https://lh3.googleusercontent.com/-3ATtQMMpOzs/AAAAAAAAAAI/AAAAAAAAABg/NyUkJB1RwWE/photo.jpg",
-profile_url: "https://plus.google.com/116077413933138989125"
-)
+# User.create(
+#   provider: "google_oauth2",
+#   uid: "103321783031167252090",
+#   name: "Ekaterina Makarova",
+#   image_url: "https://lh3.googleusercontent.com/-ZNjuTYySzRM/AAAAAAAAAAI/AAAAAAAACNA/NRMmsztzYxQ/photo.jpg",
+#   profile_url: "https://plus.google.com/103321783031167252090"
+# )
+# User.create(
+# provider: "google_oauth2",
+# uid: "116077413933138989125",
+# name: "Mikhail Smirnov",
+# image_url: "https://lh3.googleusercontent.com/-3ATtQMMpOzs/AAAAAAAAAAI/AAAAAAAAABg/NyUkJB1RwWE/photo.jpg",
+# profile_url: "https://plus.google.com/116077413933138989125"
+# )
 User.create(
   provider: "google_oauth2",
   uid: "100643097555578261454",
@@ -30,13 +30,15 @@ User.create(
   image_url: "https://lh6.googleusercontent.com/-fLV39T_Ejkg/AAAAAAAAAAI/AAAAAAAAAEA/IxNW3M1tul0/photo.jpg",
   profile_url: "https://plus.google.com/100643097555578261454"
 )
-User.create(
-  provider: "google_oauth2",
-  uid: "111184180763191522809",
-  name: "Alex Gaputin",
-  image_url: "https://lh3.googleusercontent.com/-3Oa-f2MjjVU/AAAAAAAAAAI/AAAAAAAAANY/A3_MVDDp9j8/photo.jpg",
-  profile_url: "https://plus.google.com/111184180763191522809"
-)
+# User.create(
+#   provider: "google_oauth2",
+#   uid: "111184180763191522809",
+#   name: "Alex Gaputin",
+#   image_url: "https://lh3.googleusercontent.com/-3Oa-f2MjjVU/AAAAAAAAAAI/AAAAAAAAANY/A3_MVDDp9j8/photo.jpg",
+#   profile_url: "https://plus.google.com/111184180763191522809"
+# )
+
+# ADD THIS MANUALLY!
 # User.create(
 #   provider: "google_oauth2",
 #   uid: "108520467743641645144",
@@ -44,6 +46,7 @@ User.create(
 #   image_url: "https://lh6.googleusercontent.com/-D2xNS3pe57M/AAAAAAAAAAI/AAAAAAAADDc/U5TAD3hICtU/photo.jpg",
 #   profile_url: "https://plus.google.com/108520467743641645144",
 # )
+
 User.create(
   provider: "facebook",
   uid: "100004799014941",
@@ -51,6 +54,7 @@ User.create(
   image_url: "http://graph.facebook.com/100004799014941/picture?type=square",
   profile_url: "http://www.facebook.com/nik.smith.1023"
 )
+
 User.create(
   provider: "facebook",
   uid: "100000404712006",
@@ -58,6 +62,7 @@ User.create(
   image_url: "http://graph.facebook.com/100000404712006/picture?type=square",
   profile_url: "http://www.facebook.com/maxim.pokidaylo"
 )
+
 User.create(
   provider: "facebook",
   uid: "742215700",
@@ -65,6 +70,8 @@ User.create(
   image_url: "http://graph.facebook.com/742215700/picture?type=square",
   profile_url: "http://www.facebook.com/artem.ustimenko.5"
 )
+
+# ADD THIS MANUALLY!
 # User.create(
 #   provider: "facebook",
 #   uid: "1264933098",
@@ -72,6 +79,7 @@ User.create(
 #   image_url: "http://graph.facebook.com/1264933098/picture?type=square",
 #   profile_url: "http://www.facebook.com/n3m8tz"
 # )
+
 User.create(
   provider: "facebook",
   uid: "584755799",
@@ -79,6 +87,7 @@ User.create(
   image_url: "http://graph.facebook.com/584755799/picture?type=square",
   profile_url: "http://www.facebook.com/agaputin"
 )
+
 User.create(
   provider: "facebook",
   uid: "518206113",
@@ -86,13 +95,15 @@ User.create(
   image_url: "http://graph.facebook.com/518206113/picture?type=square",
   profile_url: "http://www.facebook.com/inpopov"
 )
-User.create(
-  provider: "google_oauth2",
-  uid: "109175216560243910584",
-  name: "Nikolay Smirnov",
-  image_url: "https://lh6.googleusercontent.com/-Uyz38IdTE4E/AAAAAAAAAAI/AAAAAAAAAKs/Y_POCj6JMFc/photo.jpg",
-  profile_url: "https://plus.google.com/109175216560243910584"
-)
+
+# User.create(
+#   provider: "google_oauth2",
+#   uid: "109175216560243910584",
+#   name: "Nikolay Smirnov",
+#   image_url: "https://lh6.googleusercontent.com/-Uyz38IdTE4E/AAAAAAAAAAI/AAAAAAAAAKs/Y_POCj6JMFc/photo.jpg",
+#   profile_url: "https://plus.google.com/109175216560243910584"
+# )
+
 User.create(
   provider: "google_oauth2",
   uid: "111472809503344423926",
@@ -100,6 +111,7 @@ User.create(
   image_url: "https://lh3.googleusercontent.com/-sMbE_74XsxU/AAAAAAAAAAI/AAAAAAAAAHI/bY5OwuxLdsU/photo.jpg",
   profile_url: "https://plus.google.com/111472809503344423926"
 )
+
 User.create(
   provider: "facebook",
   uid: "706424478",
@@ -107,6 +119,7 @@ User.create(
   image_url: "http://graph.facebook.com/706424478/picture?type=square",
   profile_url: "http://www.facebook.com/ekaterina.makarova.r"
 )
+
 User.create(
   provider: "facebook",
   uid: "1632278088",
@@ -114,6 +127,7 @@ User.create(
   image_url: "http://graph.facebook.com/1632278088/picture?type=square",
   profile_url: "http://www.facebook.com/artem.morozov.125"
 )
+
 User.create(
   provider: "facebook",
   uid: "100000067564985",
@@ -128,6 +142,7 @@ User.create(
   image_url: "http://graph.facebook.com/100000496046469/picture?type=square",
   profile_url: "http://www.facebook.com/yuriy.lavor"
 )
+
 user = User.create(
   provider: "twitter",
   uid: "362730092",

@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_event, only: [:show, :edit, :update, :destroy, :pictures, :join, :rate, :going]
   before_filter :increment_views, only: :show
   before_filter :get_upcoming_and_past_event, only: [:show, :index]
+  before_filter :store_url
   
   def find_event
     @event = Event.find(params[:id])
@@ -17,7 +18,7 @@ class EventsController < ApplicationController
   def increment_views
     @event.inc(:views, 1)
   end
-  
+    
   def index
   end
   

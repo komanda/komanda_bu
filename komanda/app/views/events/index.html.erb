@@ -2,7 +2,11 @@
 	<h3>Upcoming Event</h3>
 	<%= render 'upcoming', event: @upcoming.first %>
 <% else %>
-	<p class='lead'>We are planning our next event.</p>
+	<p class='lead'>
+		We are planning our next event. Have a suggestion? 
+		<%= link_to "Let us know!", suggestions_path %> Or <%= link_to "share an event", shares_path %>
+		your are going to!
+	</p>
 	
 	<% if admin_user? %>
 		<div class="alert alert-info center">

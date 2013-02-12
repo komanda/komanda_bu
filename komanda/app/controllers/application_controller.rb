@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  helper_method :current_user, :admin_user, :admin_user?, :authenticated_user?
+  helper_method :current_user, 
+                :admin_user, 
+                :admin_user?, 
+                :authenticated_user?,
+                :store_url,
+                :redirect_back
 
   private
     def current_user
@@ -34,5 +39,13 @@ class ApplicationController < ActionController::Base
       end
       
       return false
+    end
+    
+    def store_url
+      session[:back_to] = request.referer
+    end
+    
+    def redirect_back
+      redirect_to session.delete(:back_to) || root_path
     end
 end

@@ -3,6 +3,7 @@ class SuggestionsController < ApplicationController
   before_filter :suggestions_count, only: [:index, :new, :create, :destroy]
   before_filter :new_suggestion, only: [:index, :popular, :new]
   before_filter :suggestion, only: [:star, :destroy]
+  before_filter :store_url
   
   def suggestion
     @suggestion = Suggestion.find(params[:id])

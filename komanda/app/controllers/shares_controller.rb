@@ -1,5 +1,6 @@
 class SharesController < ApplicationController
   before_filter :logged_in, only: [:new, :create]
+  before_filter :store_url
   
   def index
     @share = Share.new
