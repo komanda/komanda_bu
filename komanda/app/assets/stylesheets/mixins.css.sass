@@ -38,9 +38,23 @@ $complement:	complement($base-color)
 	-o-box-shadow: 			0 0 5px rgba(0, 0, 0, .35)
 	box-shadow: 				0 0 5px rgba(0, 0, 0, .35)
 
+=box-shadow-inset
+	-webkit-box-shadow:	inset 2px 2px 9px gray
+	-moz-box-shadow: 		inset 2px 2px 9px gray
+	-ms-box-shadow: 		inset 2px 2px 9px gray
+	-o-box-shadow: 			inset 2px 2px 9px gray
+	box-shadow: 				inset 2px 2px 9px gray
+
 =text-shadow
 	-webkit-text-shadow:	0px 1px 0px white
 	-moz-text-shadow:			0px 1px 0px white
 	-ms-text-shadow:			0px 1px 0px white
 	-o-text-shadow:				0px 1px 0px white
 	text-shadow:					0px 1px 0px white
+
+=text-shadow-params($params)
+	-webkit-text-shadow:	$params
+	-moz-text-shadow:			$params
+	-ms-text-shadow:			$params
+	-o-text-shadow:				$params
+	text-shadow:					$params

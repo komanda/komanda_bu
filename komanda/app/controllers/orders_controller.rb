@@ -1,12 +1,6 @@
 class OrdersController < ApplicationController
-  before_filter :valid_event, only: [:new, :create]
   before_filter :logged_in, only: [:new, :create]
   before_filter :admin_user, only: :index
-  
-  def valid_event
-    event_id = params[:event_id] || session[:event_id]
-    redirect_to root_path unless Event.find(event_id).upcoming?
-  end
   
   def index
     if params[:event_id]
@@ -19,14 +13,19 @@ class OrdersController < ApplicationController
 
   def new
     if params[:event_id]
-      event = Event.find(params[:event_id])
-      if event.upcoming?
-        session[:event_id] = params[:event_id]
-        session[:price] = event.price
+      @event = Event.find(params[:event_id])
+      if @event.upcoming?
+        session[:event_id] = @event.id
+        session[:price] = @event.price
         @order = Order.new()
       else
         redirect_to root_path 
       end
+    elsif params[:product_id]
+      @product = Product.find(params[:product_id])
+      session[:product_id] = @product.id
+      session[:price] = @product.price
+      @order = Order.new()
     else
       redirect_to root_path
     end
@@ -34,20 +33,35 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(params[:order])
-    @order.type = session[:event_id]
+    if session[:event_id]
+      @order.type = session[:event_id]
+    else
+      @order.type = session[:product_id]
+    end
     @order.price = session[:price]
     @order.ip_address = request.remote_ip
                                              
     if @order.save && @order.purchase
-      event = Event.find(session[:event_id])
-      if event.tickets.has_key?("#{current_user.id}")
-        event.tickets["#{current_user.id}"] += @order.quantity
+      
+      if session[:event_id]
+        @event = Event.find(session[:event_id])
+        if @event.tickets.has_key?("#{current_user.id}")
+          @event.tickets["#{current_user.id}"] += @order.quantity
+        else
+          @event.tickets["#{current_user.id}"] = @order.quantity
+        end
+        @event.save
+        @event.join(current_user, false)
       else
-        event.tickets["#{current_user.id}"] = @order.quantity
+        @product = Product.find(session[:product_id])
+        @product.num_sold += 1
+        @product.save
+        OrdersMailer.order_confirmation(current_user, @order, @product)
       end
-      event.save
-      event.join(current_user)
+      
       current_user.update_email(@order.email)
+      OrdersMailer.order_confirmation(current_user, @order, @event).deliver
+      
       render 'success'
     else
       render 'new'

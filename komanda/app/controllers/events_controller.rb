@@ -41,7 +41,7 @@ class EventsController < ApplicationController
     @event.pictures = (params[:event][:pictures]).split
     
     if @event.save
-      render @event
+      redirect_to @event
     else
       render "new"
     end

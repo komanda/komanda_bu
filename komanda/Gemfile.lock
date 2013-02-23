@@ -184,6 +184,7 @@ DEPENDENCIES
   jquery-ui-rails
   less-rails
   libv8
+  mail
   mongoid
   omniauth-facebook
   omniauth-google-oauth2

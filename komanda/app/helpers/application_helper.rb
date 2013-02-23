@@ -14,4 +14,8 @@ module ApplicationHelper
   def shares_controller?
   	"shares" == params[:controller]
   end
+  
+  def products_controller?
+  	"products" == params[:controller]
+  end
 end

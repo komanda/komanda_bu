@@ -1,7 +1,5 @@
 Komanda::Application.routes.draw do
-
-  get "shares/index"
-
+  
   root :to => 'events#index'
   
   resources :events do
@@ -21,6 +19,11 @@ Komanda::Application.routes.draw do
   resources :shares
   
   resources :orders
+  
+  resources :products
+  
+  match '/k-stuff' => 'products#index', as: :kstuff
+  match '/k-stuff/new' => 'products#new'
   
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'parties#index'
