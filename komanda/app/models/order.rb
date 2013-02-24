@@ -5,12 +5,19 @@ class Order
   field :type
   field :price, type: Float
   field :quantity, type: Integer, default: 1
+  field :size
   field :card_brand
   field :card_expires_on, type: Date
   field :ip_address
   field :email
   field :first_name
   field :last_name
+  field :address
+  field :city
+  field :state
+  field :zip
+  
+  
   
   belongs_to :user
   has_many :transactions, dependent: :destroy
@@ -18,6 +25,7 @@ class Order
   attr_accessor :card_number, :card_verification
   validates_presence_of :email
   validate :validate_card
+  validates_presence_of :address, :city, :state, :zip
   
   def price_in_cents
     (self.price * self.quantity * 100).round

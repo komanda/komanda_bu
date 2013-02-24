@@ -13,47 +13,105 @@
 	<% end %>
 
 	<% if @event %>
+		<h3><%= @event.name %></h3>
+		
 		<div class="row">
-			<%= image_tag @event.flyer, class: "span2" %>
+			<%= image_tag @event.flyer, class: "span3" %>
 			<div class="span3">
-				<h4><%= @event.name %></h4>
-				<p>
-					<em><small class="muted"><%= time_tag @event.date, format: "%B %e" %>, 
-					<%= time_tag @event.time, format: "%l:%M %P" %></small></em>
-				</p>
-				<p>
-					<%= link_to @event.address, @event.map_link, target: "_blank" %>
-				</p>
+				
+				<table class="table">
+					<tr>
+						<th class="span2">Quantity</th>
+						<td><%= f.select :quantity, [1,2,3,4,5,6] %></td>
+					</tr>
+
+					<tr>
+						<th>Price</th>
+						<td id="price" price="<%= session[:price] %>">
+							<%= number_to_currency session[:price].to_i %>
+						</td>
+					</tr>
+					<tr class="info">
+						<th>Total</th>
+						<td id="total"><%= number_to_currency session[:price].to_i * @order.quantity %></td>
+					</tr>
+				</table>
+
 			</div>
 		</div>
 	<% elsif @product %>
+		<h3><%= @product.name %></h3>
+		
 		<div class="row">
-			<%= image_tag @product.pictures.first, class: "span2" %>
+			<%= image_tag @product.pictures.first, class: "span3" %>
 			<div class="span3">
-				<h4><%= @product.name %></h4>
+				
+				<table class="table">
+					<tr>
+						<th class="span2">Quantity</th>
+						<td><%= f.select :quantity, [1,2,3,4,5,6] %></td>
+					</tr>
+
+					<tr>
+						<th>Size</th>
+						<td><%= f.select :size, ["S", "M", "L"] %></td>
+					</tr>
+
+					<tr>
+						<th>Price</th>
+						<td id="price" price="<%= session[:price] %>">
+							<%= number_to_currency session[:price].to_i %>
+						</td>
+					</tr>
+					<tr class="info">
+						<th>Total</th>
+						<td id="total"><%= number_to_currency session[:price].to_i * @order.quantity %></td>
+					</tr>
+				</table>
+					
 			</div>
 		</div>
 	<% end %>
 	
 	<br/>
 	
-	<table class="table table-bordered">
-		<tr>
-			<th class="span3">Quantity</th>
-			<td><%= f.select :quantity, [1,2,3,4,5,6] %></td>
-		</tr>
-		<tr>
-			<th>Price</th>
-			<td id="price" price="<%= session[:price] %>">
-				<%= number_to_currency session[:price].to_i %>
-			</td>
-		</tr>
-		<tr class="info">
-			<th>Total</th>
-			<td id="total"><%= number_to_currency session[:price].to_i * @order.quantity %></td>
-		</tr>
-	</table>
+	<p class="lead muted" style="text-align:center">
+		<% if @event %>
+			Billing Address
+		<% else %>
+			Shipping Address
+		<% end %>
+	</p>
 	
+	<div class="control-group">
+		<div class="control-label"><%= f.label :address, "Address*" %></div>
+		<div class="controls">
+			<%= f.text_field :address, class: "input-xlarge" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div class="control-label"><%= f.label :city, "City*" %></div>
+		<div class="controls">
+			<%= f.text_field :city, class: "input-xlarge" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div class="control-label"><%= f.label :state, "State*" %></div>
+		<div class="controls">
+			<%= f.text_field :state, class: "input-xlarge" %>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div class="control-label"><%= f.label :zip, "Zip Code*" %></div>
+		<div class="controls">
+			<%= f.text_field :zip, class: "input-mini" %>
+		</div>
+	</div>
+	
+	<div class="separator"></div>
 	<p class="lead muted" style="text-align:center">Credit Card Information</p>
 	
 	<div class="control-group">
@@ -117,7 +175,8 @@
 	<div class="separator"></div>
 	
 	<div class="controls">
-		<%= f.submit "Buy", class: "btn btn-primary" %>
+		<%= f.submit "Buy", class: "btn btn-primary", id: "buy" %>
+		<button class="btn btn-primary hide" id="dummy"><i class="icon-spinner icon-spin"></i></button>
 		<%= link_to "Cancel", root_path, class: "btn" %>
 	</div>
 <% end %>

@@ -2,7 +2,8 @@
 	<div class="offset2 span7">
 		<div class="order-form-container default">
 			<p class="alert alert-success">
-				<%= @order.first_name.titleize %>, thank you for purchasing your ticket.
+				<%= @order.first_name.titleize %>, thank you for purchasing 
+				<%= @event ? "your ticket" : @product.name %>.
 				Email confirmation has been sent to <strong><%= @order.email.upcase %></strong>. 
 				Please print this page for you record.
 			</p>

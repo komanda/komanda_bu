@@ -13,7 +13,12 @@
 		</div>
 	</div>
 <% else %>
-	
+	<div class="row">
+		<%= image_tag @product.pictures.first, class: "span2" %>
+		<div class="span3">
+			<h4><%= @product.name %></h4>
+		</div>
+	</div>
 <% end %>
 
 <br/>
