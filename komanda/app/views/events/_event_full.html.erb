@@ -5,7 +5,13 @@
 	</div>
 <% end %>
 
-<h2><%= @event.name %></h2>
+<h2>
+	<%= @event.name %>
+	<div class="pull-right facebook" style="width: 90px; height: 30px">
+		<div class="fb-like" data-send="false" 
+			data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	</div>
+</h2>
 
 <div class="separator"></div>
 

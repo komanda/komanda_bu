@@ -1,5 +1,5 @@
 Komanda::Application.routes.draw do
-  
+
   root :to => 'events#index'
   
   resources :events do
@@ -24,6 +24,7 @@ Komanda::Application.routes.draw do
   
   match '/k-stuff' => 'products#index', as: :kstuff
   match '/k-stuff/new' => 'products#new'
+  match '/contact' => 'static_pages#contact', as: :contact
   
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'parties#index'

@@ -1,5 +1,12 @@
+<h3>
+	Upcoming Event
+	<div class="pull-right facebook" style="width: 90px; height: 30px">
+		<div class="fb-like" data-send="false" 
+			data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	</div>
+</h3>
+
 <% if @upcoming.size > 0 %>
-	<h3>Upcoming Event</h3>
 	<%= render 'upcoming', event: @upcoming.first %>
 <% else %>
 	<p class='lead'>
@@ -9,8 +16,8 @@
 	</p>
 	
 	<% if admin_user? %>
-		<div class="alert alert-info center">
-			<%= link_to "New Event", new_event_path, class: "btn btn-primary" %>
+		<div class="center">
+			<%= link_to "New Event", new_event_path, class: "btn btn-primary btn-large" %>
 		</div>
 	<% end %>
 
